@@ -1,7 +1,9 @@
+import Users from "./Users";
+
 const App = () => {
   return (
     <div className="App">
-      <h1>Hello World</h1>
+      <Users />
     </div>
   );
 };
