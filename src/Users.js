@@ -1,26 +1,29 @@
-import { gql, useQuery } from "@apollo/client";
-
-const GetAllUsers = gql`
-  query {
-    allUsers {
-      githubLogin
-      name
-      avater
-    }
-    totalUsers
-  }
-`;
+import { useQuery, useMutation } from "@apollo/client";
+import { GetAllUsers } from "./graphql/query";
+import { AddFakeUsers } from "./graphql/mutation";
 
 const Users = () => {
   const { data, error, loading, refetch } = useQuery(GetAllUsers);
+  const [
+    addFakeUsers,
+    { data: mutationData, loading: mutationLoading, error: mutationError },
+  ] = useMutation(AddFakeUsers, {
+    variables: { count: 1 },
+    refetchQueries: [GetAllUsers, "GetAllUsers"],
+  });
 
-  if (loading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
+  if (loading) return "GetAllUsers Loading...";
+  if (error) return `GetAllUsers Error! ${error.message}`;
 
+  if (mutationLoading) return "AddFakeUsers Loading...";
+  if (mutationError) return `AddFakeUsers Error! ${mutationError.message}`;
+
+  console.log("mutationData: ", mutationData);
   return (
     <div>
       <p>{data.totalUsers} Users</p>
       <button onClick={() => refetch()}>Refetch Users</button>
+      <button onClick={() => addFakeUsers()}>Add Fake Users</button>
       <ul>
         {data.allUsers.map((user) => (
           <li key={user.githubLogin}>
