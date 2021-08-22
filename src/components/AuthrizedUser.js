@@ -32,7 +32,7 @@ const AuthrizedUser = () => {
         update(cache, result) {
           authorizationComplete(cache, result);
         },
-        refetchQueries: [GetAllUsers, "GetAllUsers"],
+        refetchQueries: [GetAllUsers, "getAllUsers"],
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
