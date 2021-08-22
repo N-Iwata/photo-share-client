@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from "@apollo/client";
-import { GetAllUsers } from "./graphql/query";
-import { AddFakeUsers } from "./graphql/mutation";
+import { GetAllUsers } from "../graphql/query";
+import { AddFakeUsers } from "../graphql/mutation";
 
 const Users = () => {
   const { data, error, loading, refetch } = useQuery(GetAllUsers);
