@@ -14,6 +14,10 @@ export const GitHubAuth = gql`
   mutation githubAuth($code: String!) {
     githubAuth(code: $code) {
       token
+      user {
+        name
+        avater
+      }
     }
   }
 `;

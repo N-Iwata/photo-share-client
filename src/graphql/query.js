@@ -8,5 +8,10 @@ export const GetAllUsers = gql`
       avater
     }
     totalUsers
+    me {
+      githubLogin
+      name
+      avater
+    }
   }
 `;
