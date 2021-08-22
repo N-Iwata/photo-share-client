@@ -9,7 +9,7 @@ const Users = () => {
     { data: mutationData, loading: mutationLoading, error: mutationError },
   ] = useMutation(AddFakeUsers, {
     variables: { count: 1 },
-    refetchQueries: [GetAllUsers, "GetAllUsers"],
+    refetchQueries: [GetAllUsers, "getAllUsers"],
   });
 
   if (loading) return "GetAllUsers Loading...";
@@ -18,7 +18,6 @@ const Users = () => {
   if (mutationLoading) return "AddFakeUsers Loading...";
   if (mutationError) return `AddFakeUsers Error! ${mutationError.message}`;
 
-  console.log("mutationData: ", mutationData);
   return (
     <div>
       <p>{data.totalUsers} Users</p>
